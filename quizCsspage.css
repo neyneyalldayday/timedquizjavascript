@@ -1,0 +1,63 @@
+body{
+    background-color: aquamarine;
+}
+
+h1{
+    color: blueviolet;
+    text-align: center;
+    border-color: blueviolet;
+    border-style: solid;
+    background-color: yellow;
+    
+    
+}
+h3{
+    text-align: center;
+    color: blueviolet;
+
+}
+
+#start-button{
+    text-align: center;
+    font-style: normal;
+    font-weight: bolder;
+    color: yellowgreen;
+    height: 50px;
+    width: 200px;
+    background-color: cornflowerblue;
+}
+.center{
+    text-align: center;
+    
+    
+}
+p{
+    text-align: center;
+    font-size: 30px;
+}
+
+.container{
+    text-align: center;
+}
+
+#high-scores{
+    font-style: normal;
+    font-weight: bolder;
+    color: yellowgreen;
+    height: 50px;
+    width: 200px;
+    background-color: cornflowerblue;
+}
+.answerButton{
+    text-align: center;
+    font-style: normal;
+    font-weight: bolder;
+    color: yellowgreen;
+    height: 50px;
+    width: 200px;
+    background-color: cornflowerblue;
+      
+}
+#questionDiv{
+    text-align: center;
+}
