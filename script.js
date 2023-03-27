@@ -137,6 +137,22 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.addEventListener("click", countDown);
 });
 
+
+function startTimer(){
+    timeLeft = 75
+    if(timer) {
+        clearInterval(timer);
+    }
+    timer =  setInterval(function () {
+        if (timeLeft <= 0) {
+            stopTimer()   
+        }
+        timeLeftDisplay.innerHTML = timeLeft
+        timeLeft -= 1
+    }, 1000)
+}
+
+
 // i want this click to prompt the first question
 
 //i need to figure out how to make time go away for a wrong answer
