@@ -1,184 +1,126 @@
 var currentIndex = 0;
 var lastIndex = 4;
-var timer = null
-var timeLeft = null
-var quiz = [{
-
-        answers: ["spanish", "dynamic", "russian", "chinese"],
-        questionText: "what type of language is java script?",
-        correctAnswer: "dynamic",
-        userAnswer: null,
-    },
-    {
-
-        answers: ["ritual", "turn a nob", "()", "{}"],
-        questionText: "how do you invoke a function?",
-        correctAnswer: "()",
-        userAnswer: null,
-    },
-    {
-
-        answers: ["alien gun", "type of fish", "method", "list of items"],
-        questionText: "what is an array?",
-        correctAnswer: "list of items",
-        userAnswer: null,
-    },
-    {
-
-        answers: ["//", "comment", "()", "++"],
-        questionText: "how do you make comments in javascript?",
-        correctAnswer: "//",
-        userAnswer: null,
-    },
-    {
-
-        answers: ["equals", "=", "%%", "==="],
-        questionText: "how do you state that something equals something in j.s.?",
-        correctAnswer: "===",
-        userAnswer: null,
-    }
-
-]
-displayQuestion(quiz[currentIndex])
+var timer = null;
+var timeLeft = null;
+var score = 0;
+var questionDiv = document.querySelector("#questionDiv");
+var quiz = [
+  {
+    answers: ["spanish", "dynamic", "russian", "chinese"],
+    questionText: "what type of language is java script?",
+    correctAnswer: "dynamic",
+    userAnswer: null,
+  },
+  {
+    answers: ["ritual", "turn a nob", "()", "{}"],
+    questionText: "how do you invoke a function?",
+    correctAnswer: "()",
+    userAnswer: null,
+  },
+  {
+    answers: ["alien gun", "type of fish", "method", "list of items"],
+    questionText: "what is an array?",
+    correctAnswer: "list of items",
+    userAnswer: null,
+  },
+  {
+    answers: ["//", "comment", "()", "++"],
+    questionText: "how do you make comments in javascript?",
+    correctAnswer: "//",
+    userAnswer: null,
+  },
+  {
+    answers: ["equals", "=", "%%", "==="],
+    questionText: "how do you state that something equals something in j.s.?",
+    correctAnswer: "===",
+    userAnswer: null,
+  },
+];
 
 function displayQuestion(question) {
-    console.log(question)
-    console.log(question.questionText)
-    var HTML = `            <P>
-${question.questionText}
+  var HTML = `            
+                <P>${question.questionText}</P>
+                <button class ="answerButton">${question.answers[0]}</button>
+                <button class ="answerButton">${question.answers[1]}</button>
+                <button class ="answerButton">${question.answers[2]}</button>
+                <button class ="answerButton">${question.answers[3]}</button>
+            `;
 
-</P>
-<button class ="answerButton">${question.answers[0]}</button>
-<button class ="answerButton">${question.answers[1]}</button>
-<button class ="answerButton">${question.answers[2]}</button>
-<button class ="answerButton">${question.answers[3]}</button>`
-    questionDiv.innerHTML = HTML
-    console.log(HTML)
+  questionDiv.innerHTML = HTML;
 }
+
+displayQuestion(quiz[currentIndex]);
+
 document.addEventListener("click", function (event) {
-    console.log(event.target)
-    if (event.target.classList.contains("answerButton")) {
-        console.log(event.target.textContent)
-        quiz[currentIndex].userAnswer = event.target.textContent
-        if (quiz[currentIndex].userAnswer == quiz[currentIndex].correctAnswer) {
-            console.log("correct")
-        }else{
-            console.log("wrong")
-            timeLeft -=5 
-        }
-
-        nextQuestion()
+  if (event.target.classList.contains("answerButton")) {
+    quiz[currentIndex].userAnswer = event.target.textContent;
+    if (quiz[currentIndex].userAnswer == quiz[currentIndex].correctAnswer) {
+      alert("correct")
+      score++;
+    } else {
+      alert("wrong!!!!")
+      timeLeft -= 5;
     }
-
-})
+    nextQuestion();
+  }
+  if (quiz[currentIndex] === quiz[lastIndex]) {
+    endQuiz();
+  }
+});
 
 function nextQuestion() {
-    currentIndex++
-    displayQuestion(quiz[currentIndex])
-
+  currentIndex++;
+  displayQuestion(quiz[currentIndex]);
 }
+
 function endQuiz() {
-    lastIndex
-    displayQuestion(quiz[lastIndex])
+  clearInterval((timeLeft = 0));
 
+  const endNote = document.createElement("div");
+  endNote.innerHTML = `
+       <div>
+            <h3>Ya Done</h3>
+            <form>
+              <input  type="text"  id="inputForm"/>
+              <p>enter your name</p>
+              <button id="submit-button">Submit Name</button>           
+            </form>       
+       </div>
+    `;
+  const endScreen = document.querySelector("#end-screen");
+  endScreen.append(endNote);
 }
-
-
-
-
-
-
-//sart button causes timer to begen, prompts questions
-
-//create an elemnt for the question to appear in. we need to draw it to the page
-//the element will hold the questions and answer buttons
-//we will generate questions from the quiz array
-// when user clicks either a new question is presented or if wrong lose 5 seconds
-//when quiz is done we are going to show another screen
-// when the time runs out the game is done
-// store the name and score in local storage
-// make a restart quiz button
-
-function startTimer(){
-    timeLeft = 75
-    timer =  setInterval(function () {
-        if (timeLeft <= 0) {
-        stopTimer()   
-        }
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1
-    }, 1000)
-}
-function stopTimer(){
-    endQuiz()
-    clearInterval(timer);
-}
-
-
 
 //making a timer button to start off
 document.addEventListener("DOMContentLoaded", () => {
-    var timeLeftDisplay = document.querySelector("#time-left");
-    var startBtn = document.querySelector("#start-button");
-    timeLeft = 75
+  var timeLeftDisplay = document.querySelector("#time-left");
+  var startBtn = document.querySelector("#start-button");
+  timeLeft = 75;
 
-
-
-    function countDown() {
-        setInterval(function () {
-            if (timeLeft <= 0) {
-                clearInterval(timeLeft = 0);
-            }
-            timeLeftDisplay.innerHTML = timeLeft
-            timeLeft -= 1
-        }, 1000)
-
-    }
-    startBtn.addEventListener("click", countDown);
+  function countDown() {
+    setInterval(function () {
+      if (timeLeft <= 0) {
+        endQuiz;
+      }
+      timeLeftDisplay.innerHTML = timeLeft;
+      timeLeft -= 1;
+    }, 1000);
+  }
+  startBtn.addEventListener("click", countDown);
 });
 
-
-function startTimer(){
-    timeLeft = 75
-    if(timer) {
-        clearInterval(timer);
-    }
-    timer =  setInterval(function () {
-        if (timeLeft <= 0) {
-            stopTimer()   
-        }
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1
-    }, 1000)
+function saveShit() {
+  const localShit = localStorage.getItem(JSON.parse("localShit")) || [];
+  var scores = {
+    Doodsname: Doodsname,
+    score: score,
+  };
+  localShit.push(scores);
+  localStorage.setItem("localShit", JSON.stringify(localShit));
 }
-
-
-// i want this click to prompt the first question
-
-//i need to figure out how to make time go away for a wrong answer
-
-//when a question is answered correctly. a new question will appear.
-
-//when the time runs out i want to save the initials and high score.
-
-
-// var testObject = { 'one': 1, 'two': 2, 'three': 3 };
-// // Put the object into storage
-// localStorage.setItem('testObject', JSON.stringify(testObject));
-
-// // Retrieve the object from storage
-// var retrievedObject = localStorage.getItem('testObject');
-
-// console.log('retrievedObject: ', JSON.parse(retrievedObject));
-
-
-var scores =[{
-    name:"rene",
-    score: 10
-}]
-localStorage.setItem('scoreboard', JSON.stringify(scores));
-
-// Retrieve the object from storage
-var retrievedObject = localStorage.getItem('scoreboard');
-
-console.log('retrievedObject: ', JSON.parse(retrievedObject));
+const submitName = document.querySelector("#submit-button");
+submitName.addEventListener("click", function (event) {
+    event.preventDefault()
+    console.log("click!")
+  saveShit();
+});
