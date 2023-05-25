@@ -61,3 +61,11 @@ p{
 #questionDiv{
     text-align: center;
 }
+
+.hide{
+    display: none;
+}
+
+.end-screen{
+    text-align: center;
+}

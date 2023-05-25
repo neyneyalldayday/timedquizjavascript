@@ -4,6 +4,15 @@ var timer = null;
 var timeLeft = null;
 var score = 0;
 var questionDiv = document.querySelector("#questionDiv");
+var questionContainer = document.querySelector(".questions");
+var dummy = document.querySelector(".dummy");
+var inputForm = document.querySelector("#inputForm");
+var timeLeftDisplay = document.querySelector("#time-left");
+var startBtn = document.querySelector("#start-button");
+var endForm = document.querySelector(".end-form")
+timeLeft = 75;
+let flash;
+let flashend;
 var quiz = [
   {
     answers: ["spanish", "dynamic", "russian", "chinese"],
@@ -35,7 +44,20 @@ var quiz = [
     correctAnswer: "===",
     userAnswer: null,
   },
+  
 ];
+
+
+function countDown() {
+    startBtn.classList.add("hide");
+    timer = setInterval(function () {
+      if (timeLeft <= 0) {
+        endQuiz();
+      }
+      timeLeftDisplay.innerHTML = timeLeft;
+      timeLeft -= 1;
+    }, 1000);
+  }
 
 function displayQuestion(question) {
   var HTML = `            
@@ -55,72 +77,67 @@ document.addEventListener("click", function (event) {
   if (event.target.classList.contains("answerButton")) {
     quiz[currentIndex].userAnswer = event.target.textContent;
     if (quiz[currentIndex].userAnswer == quiz[currentIndex].correctAnswer) {
-      alert("correct")
+        clearTimeout(flash);       
+        dummy.textContent = "Correct Foo!!"; 
+        dummy.classList.remove("hide")       
+        flash = setTimeout(function () {
+        dummy.classList.add("hide");
+      }, 1000);     
       score++;
     } else {
-      alert("wrong!!!!")
+        clearTimeout(flashDummy);        
+      dummy.textContent = "Wrong Foo!!!!";
+        dummy.classList.remove("hide")
+      flash = setTimeout(function () {
+        dummy.classList.add("hide");
+      }, 1000);
       timeLeft -= 5;
     }
     nextQuestion();
   }
-  if (quiz[currentIndex] === quiz[lastIndex]) {
-    endQuiz();
-  }
+
 });
 
 function nextQuestion() {
   currentIndex++;
-  displayQuestion(quiz[currentIndex]);
+  if (currentIndex  === quiz.length) {
+    clearInterval(timer)
+    endQuiz();
+  } else {
+    displayQuestion(quiz[currentIndex])
+  }
 }
 
 function endQuiz() {
-  clearInterval((timeLeft = 0));
-
-  const endNote = document.createElement("div");
-  endNote.innerHTML = `
-       <div>
-            <h3>Ya Done</h3>
-            <form>
-              <input  type="text"  id="inputForm"/>
-              <p>enter your name</p>
-              <button id="submit-button">Submit Name</button>           
-            </form>       
-       </div>
-    `;
-  const endScreen = document.querySelector("#end-screen");
-  endScreen.append(endNote);
+  const endScreen = document.querySelector(".end-screen");
+  endScreen.classList.remove("hide");
+  
 }
 
-//making a timer button to start off
-document.addEventListener("DOMContentLoaded", () => {
-  var timeLeftDisplay = document.querySelector("#time-left");
-  var startBtn = document.querySelector("#start-button");
-  timeLeft = 75;
-
-  function countDown() {
-    setInterval(function () {
-      if (timeLeft <= 0) {
-        endQuiz;
-      }
-      timeLeftDisplay.innerHTML = timeLeft;
-      timeLeft -= 1;
-    }, 1000);
-  }
-  startBtn.addEventListener("click", countDown);
-});
-
 function saveShit() {
-  const localShit = localStorage.getItem(JSON.parse("localShit")) || [];
+  const localShit = JSON.parse(localStorage.getItem("localShit")) || [];
+  var doodsName = inputForm.value.trim();
   var scores = {
-    Doodsname: Doodsname,
+    doodsName: doodsName,
     score: score,
   };
   localShit.push(scores);
   localStorage.setItem("localShit", JSON.stringify(localShit));
+ inputForm.value = ""
+ var message = document.createElement("p")
+ message.textContent = "name has been saved"
+ endForm.appendChild(message)
+ let flashend = setTimeout(function(){
+    message.classList.add("hide")
+ }, 1000)
+ clearTimeout(flashend)
 }
+
+
+  startBtn.addEventListener("click", countDown);
+
 const submitName = document.querySelector("#submit-button");
 submitName.addEventListener("click", function (event) {
-    event.preventDefault()
-    console.log("click!")
+  event.preventDefault();
   saveShit();
 });
