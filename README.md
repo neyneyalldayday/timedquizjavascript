@@ -46,3 +46,8 @@ THEN I can save my initials and my score
 ![quiz3](https://github.com/neyneyalldayday/vintageShop/assets/65675240/c9d3d721-3ab9-414c-ac30-382691c3a552)
 
 ![quiz4](https://github.com/neyneyalldayday/vintageShop/assets/65675240/6d62cff7-63f7-4b63-ac7c-ee2d38d3032f)
+
+
+
+## link to the deployed application
+https://neyneyalldayday.github.io/timedquizjavascript/ 
