@@ -69,6 +69,17 @@ p{
     text-align: center;
 }
 
+#submit-button{
+    text-align: center;
+    font-style: normal;
+    font-weight: bolder;
+    color: yellowgreen;
+    height: 50px;
+    width: 200px;
+    background-color: cornflowerblue;
+    box-shadow: 4px 4px 8px 1px #00000075;
+}
+
 .hide{
     display: none;
 }
@@ -83,6 +94,17 @@ p{
     box-shadow: 4px 4px 8px 1px #00000075;
     margin: 2rem;
     padding: 1rem;
+}
+
+.endButton{
+    text-align: center;
+    font-style: normal;
+    font-weight: bolder;
+    color: yellowgreen;
+    height: 50px;
+    width: 200px;
+    background-color: cornflowerblue;
+    box-shadow: 4px 4px 8px 1px #00000075; 
 }
 
 .score-section{

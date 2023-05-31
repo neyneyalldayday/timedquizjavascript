@@ -157,7 +157,7 @@ function displayScores() {
       scoreSection.classList.add('hide')
     }
   })
- 
+  revealNames.removeEventListener("click", displayScores);
 
 }
 
