@@ -1,5 +1,8 @@
 body{
     background-color: aquamarine;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1{
@@ -8,7 +11,7 @@ h1{
     border-color: blueviolet;
     border-style: solid;
     background-color: yellow;
-    
+    box-shadow: 4px 4px 8px 1px #00000075;
     
 }
 h3{
@@ -25,15 +28,17 @@ h3{
     height: 50px;
     width: 200px;
     background-color: cornflowerblue;
+    box-shadow: 4px 4px 8px 1px #00000075;
 }
 .center{
     text-align: center;
-    
+
     
 }
 p{
     text-align: center;
     font-size: 30px;
+    padding: 2rem;
 }
 
 .container{
@@ -47,6 +52,7 @@ p{
     height: 50px;
     width: 200px;
     background-color: cornflowerblue;
+    box-shadow: 4px 4px 8px 1px #00000075;
 }
 .answerButton{
     text-align: center;
@@ -56,6 +62,7 @@ p{
     height: 50px;
     width: 200px;
     background-color: cornflowerblue;
+    box-shadow: 4px 4px 8px 1px #00000075;
       
 }
 #questionDiv{
@@ -68,4 +75,42 @@ p{
 
 .end-screen{
     text-align: center;
+    color: blueviolet;
+    text-align: center;
+    border-color: blueviolet;
+    border-style: solid;
+    background-color: yellow;
+    box-shadow: 4px 4px 8px 1px #00000075;
+    margin: 2rem;
+    padding: 1rem;
+}
+
+.score-section{
+    text-align: center;
+    color: blueviolet;
+    text-align: center;
+    border-color: blueviolet;
+    border-style: solid;
+    background-color: yellow;
+    box-shadow: 4px 4px 8px 1px #00000075;
+    margin: 2rem;
+    padding: 1rem;
+}
+.score-item{
+    font-style: normal;
+    font-weight: bolder;
+    color:cornflowerblue;
+    list-style: none;   
+}
+
+.close-scores-button{
+    text-align: center;
+    font-style: normal;
+    font-weight: bolder;
+    color: yellowgreen;
+    height: 20px;
+    width: 20px;
+    background-color: cornflowerblue;
+    box-shadow: 4px 4px 8px 1px #00000075;
+    margin: .5rem;
 }

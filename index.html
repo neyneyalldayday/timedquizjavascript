@@ -12,10 +12,11 @@
 <body>
     <div class="container">
         <button id="high-scores">whos the boss?</button>
+        <ul class="score-section hide"></ul>
     </div>
     <div class="wrapper">
         <h1>Coding quiz challenge</h1>
-        <p>alright here we go. A quiz for ya. You have 75 seconds to complete the
+        <p class="start-text">alright here we go. A quiz for ya. You have 75 seconds to complete the
             assesment. Every time you blow it you lose 5 seconds. when the time runs
             out you can save your initials and high score. click "whos the boss" to check your stats.
             Earn those bragging rights! best of luck to you.
@@ -23,22 +24,21 @@
         <h3>seconds left: <span id="time-left">75</span></h3>
         <div class="center">
             <button id="start-button">start me</button>
+            <div id="correct" class="dummy"></div>
         </div>
-        <div id="questionDiv" class="questions">
-            <div id="correct" class="dummy hide"></div>
-            <div id="incorrect" class="dummy hide"></div>
-        </div>
-          <div class="end-screen  hide">
-            
+          
+        <div id="questionDiv" class="questions"></div>
+
+          <div class="end-screen  hide">            
                 <h3>Ya Done</h3>
                 <form class="end-form">
                   <input  type="text"  id="inputForm"/>
                   <p>enter your name</p>
                   <button id="submit-button">Submit Name</button>           
-                </form>       
-           
+                </form> 
+                <div class="end-button-div"></div>           
           </div>
-    
+    </div>
 
 
 
